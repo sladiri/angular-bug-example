@@ -1,27 +1,21 @@
-# AngularBugExample
+# Bug Example
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.0-rc.3.
+## Steps to reproduce:
 
-## Development server
+- Type slowly in the input field.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Expected
 
-## Code scaffolding
+- Headline updates with each keystroke.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Result
 
-## Build
+- Some keystrokes are not reflected in the title, the title updates delayed by one keystroke.
+- Happens in all Browsers, eg. Chrome `Version 70.0.3538.67 (Official Build) (64-bit)`
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Additional Info
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+- If you type fast, the update bug does not happen.
+- `src\app\app.component.ts`, line 48 is related to the bug. If you comment it out, the bug does not happen.
+- The Typescript config has `target=es2018`. If you lower the target to `es2016`, `es2015`, `es6` or `es5`, the bug does not happen.
+- The unit test for this never fails.
